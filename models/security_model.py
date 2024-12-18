@@ -1,8 +1,6 @@
 from typing import Optional, Dict, Any
 
 from pydantic import BaseModel
-from sqlalchemy import Column, Integer, String, Text
-from database import Base
 
 
 class Request(BaseModel):
@@ -24,10 +22,14 @@ class Response(BaseModel):
     results: list[TaskResult]
 
 
-class Infos(BaseModel):
-    headers: Optional[Dict[str, Any]] = None
-    cookies: Optional[Dict[str, Any]] = None
-    ext: Optional[str] = None
+class Info(BaseModel):
+    """
+    更新headers  cookies 请求封装
+    """
+    headers: Optional[Dict[str, Any]]
+    cookies: Optional[Dict[str, Any]]
+    ext: Optional[Dict[str, Any]]={}
+
 
 # class ErrorResponse(BaseModel):
 #     error: str
